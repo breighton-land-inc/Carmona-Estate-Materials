@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oakwood File Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+<div class="nav-container">
+            <img src="./bgAndLogo/carmona-removebg-preview.png" alt="Logo" class="logo">
+<div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <div class="nav-right">
+               <a href="#hero" class="nav-btn">Home</a>
+               <a href="#files" class="nav-btn">Files</a>
+               <a href="#floorplan" class="nav-btn">Floor Plans</a>
+            </div>
+
+         
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+        <!-- Hero Homepage Section -->
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Oakwood File Portal</h1>
+                <p>Access documents, pricing and floorplans for Oakwood properties.</p>
+                
+            </div>
+        </section>
+
+        <!-- Files Section -->
+        <section id="files" class="files-section">
+            <h2>Available Documents</h2>
+            <div id="file-list" class="file-grid">
+                <!-- Files injected by JS -->
+            </div>
+        </section>
+
+        <!-- Floorplan Grid Section (No Carousel) -->
+        <section id="floorplan" class="floorplan-section">
+            <h2 class="section-title">Floor Plans</h2>
+            <div class="floorplan-grid">
+                <div class="floorplan-item" data-img="./floorplan/floorplan1.jpg">
+                    <img src="./floorplan/floorplan1.jpg" alt="Oakwood Floorplan 1" class="floorplan-img">
+                    <div class="floorplan-overlay">
+                        <button class="view-btn" data-img="./floorplan/floorplan1.jpg">View Floorplan</button>
+                    </div>
+                </div>
+                <div class="floorplan-item" data-img="./floorplan/floorplan2.jpg">
+                    <img src="./floorplan/floorplan2.jpg" alt="Oakwood Floorplan 2" class="floorplan-img">
+                    <div class="floorplan-overlay">
+                        <button class="view-btn" data-img="./floorplan/floorplan2.jpg">View Floorplan</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floorplan Modal -->
+    <div id="floorplanModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImg" class="modal-img" src="" alt="Floorplan">
+            <div class="modal-nav">
+                <button id="modalPrev" class="modal-btn">❮</button>
+                <span id="modalCounter">1 / 2</span>
+                <button id="modalNext" class="modal-btn">❯</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Oakwood Properties. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
