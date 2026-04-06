@@ -34,6 +34,11 @@ body {
     position: relative;
 }
 
+.logo {
+    height: 50px;
+    width: auto;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -112,11 +117,6 @@ body {
         background: rgba(255, 255, 255, 0.25);
         transform: scale(1.02);
     }
-}
-
-.logo {
-    height: 50px;
-    width: auto;
 }
 
 .nav-right {
@@ -247,26 +247,7 @@ body {
     color: #2c3e50;
 }
 
-.download-btn {
-    background-color: #3498db;
-    color: white;
-    padding: clamp(10px, 2vw, 14px) clamp(20px, 4vw, 28px);
-    text-decoration: none;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-    font-weight: 600;
-    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
-}
-
-.download-btn:hover {
-    background-color: #2980b9;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.5);
-}
-
-/* File buttons container */
+/* File buttons - View and Download */
 .file-buttons {
     display: flex;
     gap: 1rem;
@@ -275,13 +256,51 @@ body {
     width: 100%;
 }
 
+.download-btn, .file-view-btn {
+    padding: clamp(10px, 2vw, 14px) clamp(20px, 4vw, 28px);
+    text-decoration: none;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    display: inline-block;
+    text-align: center;
+    min-width: 100px;
+    line-height: 1.4;
+}
+
+.download-btn {
+    background-color: #3498db;
+    color: white;
+}
+
+.download-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.5);
+}
+
+.file-view-btn {
+    background-color: #27ae60;
+    color: white;
+}
+
+.file-view-btn:hover {
+    background-color: #229954;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(39, 174, 96, 0.5);
+}
+
 @media (max-width: 480px) {
     .file-buttons {
         flex-direction: column;
         gap: 0.75rem;
     }
     
-    .file-view-btn {
+    .file-view-btn, .download-btn {
         width: 100%;
         padding: 0.875rem;
         font-size: 1rem;
@@ -367,8 +386,6 @@ body {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
-
-
 /* Modal Styles */
 .modal {
     display: none;
@@ -402,7 +419,6 @@ body {
 
 .close {
     position: absolute;
-
     top: -3rem;
     right: 0;
     color: white;

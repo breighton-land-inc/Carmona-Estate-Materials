@@ -1,11 +1,11 @@
 const files = [
     { name: "COMPUTATION.pdf", url: "./files/COMPUTATION.pdf" },
-    { name: "CE-PRESENTATION.pdf", url: "./files/CE-PRESENTATION.pdf" },
+    { name: "CE-PRESENTATION.pdf", url: "./files/CE-Presentation.pdf" },
     { name: "price2026.pdf", url: "./files/CE-Price04032026.pdf" }
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
-// Populate file list with View + Download buttons
+    // Populate file list with View + Download buttons
     const fileContainer = document.getElementById('file-list');
     files.forEach((file, index) => {
         const fileCard = document.createElement('div');
@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="file-icon">📄</div>
             <h3>${file.name}</h3>
             <div class="file-buttons">
+                <button class="file-view-btn" data-url="${file.url}">View</button>
                 <a href="${file.url}" class="download-btn" download>Download</a>
             </div>
         `;
@@ -21,8 +22,17 @@ document.addEventListener("DOMContentLoaded", () => {
         fileContainer.appendChild(fileCard);
     });
 
+    // Add View button handlers (open PDF in new tab)
+    document.querySelectorAll('.file-view-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const url = btn.dataset.url;
+            window.open(url, '_blank');
+        });
+    });
+
     // Smooth scroll for CTA button and nav links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('a[href^=\"#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
@@ -34,23 +44,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
             // Close mobile menu after navigation
-    const hamburger = document.getElementById('hamburger');
-    const navRight = document.querySelector('.nav-right');
-    if (hamburger && navRight) {
+            const hamburger = document.getElementById('hamburger');
+            const navRight = document.querySelector('.nav-right');
+            if (hamburger && navRight) {
                 hamburger.classList.remove('active');
                 navRight.classList.remove('active');
             }
         });
     });
 
-
-
-
-
-
     // Mobile menu toggle - now targets .nav-right
     const hamburger = document.getElementById('hamburger');
-const navRight = document.querySelector('.nav-right');
+    const navRight = document.querySelector('.nav-right');
     if (hamburger && navRight) {
         const toggleMenu = () => {
             hamburger.classList.toggle('active');
@@ -133,9 +138,7 @@ const navRight = document.querySelector('.nav-right');
     const modal = document.getElementById('floorplanModal');
     const modalImg = document.getElementById('modalImg');
     const closeBtn = document.querySelector('.close');
-
     const modalPrev = document.getElementById('modalPrev');
-
     const modalNext = document.getElementById('modalNext');
     const modalCounter = document.getElementById('modalCounter');
     
@@ -187,7 +190,7 @@ const navRight = document.querySelector('.nav-right');
         });
     }
 
-// Keyboard navigation
+    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (modal.style.display === 'block') {
             if (e.key === 'ArrowLeft') modalPrev.click();
@@ -196,12 +199,10 @@ const navRight = document.querySelector('.nav-right');
         }
     });
 
-
-
     // Image zoom on wheel
     modalImg.addEventListener('wheel', (e) => {
         e.preventDefault();
-        const scale = modalImg.style.transform ? parseFloat(modalImg.style.transform.match(/scale\(([^)]+)\)/)?.[1] || 1) : 1;
+        const scale = modalImg.style.transform ? parseFloat(modalImg.style.transform.match(/scale\\(([^)]+)\\)/)?.[1] || 1) : 1;
         const delta = e.deltaY > 0 ? 0.9 : 1.1;
         const newScale = Math.min(Math.max(scale * delta, 0.5), 3);
         modalImg.style.transform = `scale(${newScale})`;
