@@ -27,8 +27,8 @@
             </div>
 
          
-    </nav>
 
+        </nav>
     <!-- Main Content -->
     <main class="content">
         <!-- Hero Homepage Section -->
@@ -86,7 +86,21 @@
         <p>&copy; 2024 Oakwood Properties. All rights reserved.</p>
     </footer>
 
+    <!-- PDF Modal -->
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <iframe id="modalPdf" class="modal-pdf" src="" title="PDF Viewer"></iframe>
+            <div class="modal-nav">
+                <button id="pdfPrev" class="modal-btn">❮</button>
+                <span id="pdfCounter">1 / 3</span>
+                <button id="pdfNext" class="modal-btn">❯</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 
 </html>
+

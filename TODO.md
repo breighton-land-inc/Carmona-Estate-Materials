@@ -1,19 +1,23 @@
-# Git + View Buttons Task Progress
+# Oakwood File Portal Task Progress
 
-## Plan Steps:
+## Original Plan Steps:
 - [x] Confirm Git working (`git --version`)
 - [x] Repo initialized on main branch  
-- [ ] Add View buttons to PDF file cards (script.js + HTML/CSS)
-- [ ] Test PDF viewing (new tab/modal)
+- [x] Add View buttons to PDF file cards (script.js + HTML/CSS)
+- [x] Test PDF viewing (new tab/modal)
 - [ ] Commit changes to git
 
-## Completed:
-- ✅ Git working + repo on main branch
-- ✅ View buttons added to all 3 PDF files (green "View" | blue "Download")
-- ✅ Responsive design, opens PDFs in new tab
-- ✅ Styles updated (hover effects, mobile layout)
+## PDF Viewer Fix Steps (Approved Plan):
+- [x] 1. Add PDF modal HTML to index.html
+- [x] 2. Implement PDF modal JS logic in script.js (iframe loader, nav)
+- [x] 3. Add PDF modal CSS styles to style.css
 
-**Test**: Open `index.html` in browser → Files section → Click "View" on any PDF.
+- [ ] 4. Update file-view-btn click handlers
+- [ ] 5. Test with live-server (type 'y' if prompted, check http://localhost:8080)
+- [ ] 6. git add . && git commit -m \"fix: add PDF modal viewer\"
 
-**Next**: `git add . && git commit -m "feat: add View buttons to PDF files"`
+## Status:
+✅ Current new-tab view working (files valid)  
+🚀 Next: Inline PDF modal (iframe) for better UX
 
+**Test command:** Live-server running - click Files → View PDF (should now use modal)
