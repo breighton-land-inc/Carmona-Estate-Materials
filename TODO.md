@@ -11,9 +11,9 @@
 - [x] 1. Add PDF modal HTML to index.html
 - [x] 2. Implement PDF modal JS logic in script.js (iframe loader, nav)
 - [x] 3. Add PDF modal CSS styles to style.css
+- [x] 4. Update file-view-btn click handlers
+- [x] 5. Test with live-server (type 'y' if prompted, check http://localhost:8080)
 
-- [ ] 4. Update file-view-btn click handlers
-- [ ] 5. Test with live-server (type 'y' if prompted, check http://localhost:8080)
 - [ ] 6. git add . && git commit -m \"fix: add PDF modal viewer\"
 
 ## Status:

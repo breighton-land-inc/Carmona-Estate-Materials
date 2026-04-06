@@ -138,7 +138,8 @@ const navRight = document.querySelector('.nav-right');
     // Floorplan Modal
     const modal = document.getElementById('floorplanModal');
     const modalImg = document.getElementById('modalImg');
-    const closeBtn = document.querySelector('.close');
+    const closeBtn = document.querySelector('#floorplanModal .close');
+
     const modalPrev = document.getElementById('modalPrev');
     const modalNext = document.getElementById('modalNext');
     const modalCounter = document.getElementById('modalCounter');
@@ -194,7 +195,8 @@ const navRight = document.querySelector('.nav-right');
 // PDF Modal Logic
     const pdfModal = document.getElementById('pdfModal');
     const modalPdf = document.getElementById('modalPdf');
-    const pdfCloseBtn = pdfModal.querySelector('.close');
+    const pdfCloseBtn = document.querySelector('#pdfModal .close');
+
     const pdfPrev = document.getElementById('pdfPrev');
     const pdfNext = document.getElementById('pdfNext');
     const pdfCounter = document.getElementById('pdfCounter');
