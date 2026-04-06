@@ -1,28 +1,19 @@
-# Mobile Burger Menu Implementation Plan
+# Git + View Buttons Task Progress
 
-## Status: Completed ✅
+## Plan Steps:
+- [x] Confirm Git working (`git --version`)
+- [x] Repo initialized on main branch  
+- [ ] Add View buttons to PDF file cards (script.js + HTML/CSS)
+- [ ] Test PDF viewing (new tab/modal)
+- [ ] Commit changes to git
 
-### Step 1: [x] Update index.html
-- Add id="hamburger" to .hamburger div
-- Add .mobile-menu container with nav links after .nav-right
+## Completed:
+- ✅ Git working + repo on main branch
+- ✅ View buttons added to all 3 PDF files (green "View" | blue "Download")
+- ✅ Responsive design, opens PDFs in new tab
+- ✅ Styles updated (hover effects, mobile layout)
 
-### Step 2: [x] Update style.css  
-- Add desktop styles: hide hamburger/mobile-menu, show nav-right
-- Update mobile media query: show hamburger, hide nav-right, style .mobile-menu slide-in
-- Add overlay and mobile nav-btn styles
+**Test**: Open `index.html` in browser → Files section → Click "View" on any PDF.
 
-### Step 3: [x] Update script.js
-- Add hamburger click toggle function
-- Add close menu on link click/resize/overlay
-- Ensure smooth scroll works on mobile links
-
-### Step 4: [x] Test
-- Check desktop horizontal nav
-- Check mobile burger toggle/slide
-- Verify smooth scroll and close behavior
-- Responsive breakpoints
-
-### Step 5: [x] Mark Complete ✅
-
-Burger menu fully implemented for mobile (≤768px). Navbar collapses to hamburger on mobile, toggles full-screen slide menu with nav links. Closes on link click or desktop resize. Smooth scrolling preserved.
+**Next**: `git add . && git commit -m "feat: add View buttons to PDF files"`
 

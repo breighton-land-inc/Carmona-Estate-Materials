@@ -5,15 +5,18 @@ const files = [
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Populate file list
+// Populate file list with View + Download buttons
     const fileContainer = document.getElementById('file-list');
-    files.forEach(file => {
+    files.forEach((file, index) => {
         const fileCard = document.createElement('div');
         fileCard.className = 'file-card';
         fileCard.innerHTML = `
             <div class="file-icon">📄</div>
             <h3>${file.name}</h3>
-            <a href="${file.url}" class="download-btn" download>Download</a>
+            <div class="file-buttons">
+                <button class="view-btn file-view-btn" data-url="${file.url}" data-index="${index}">View</button>
+                <a href="${file.url}" class="download-btn" download>Download</a>
+            </div>
         `;
         fileContainer.appendChild(fileCard);
     });
@@ -30,14 +33,22 @@ document.addEventListener("DOMContentLoaded", () => {
                     block: 'start'
                 });
             }
-    // Close mobile menu after navigation
-            const hamburger = document.getElementById('hamburger');
-            const navRight = document.querySelector('.nav-right');
-            if (hamburger && navRight) {
+            // Close mobile menu after navigation
+    const hamburger = document.getElementById('hamburger');
+    const navRight = document.querySelector('.nav-right');
+    if (hamburger && navRight) {
                 hamburger.classList.remove('active');
                 navRight.classList.remove('active');
             }
         });
+    });
+
+    // File View buttons handler
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('file-view-btn')) {
+            const url = e.target.dataset.url;
+            window.open(url, '_blank');
+        }
     });
 
 

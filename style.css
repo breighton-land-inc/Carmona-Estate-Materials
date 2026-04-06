@@ -266,6 +266,28 @@ body {
     box-shadow: 0 8px 25px rgba(52, 152, 219, 0.5);
 }
 
+/* File buttons container */
+.file-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+    .file-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .file-view-btn {
+        width: 100%;
+        padding: 0.875rem;
+        font-size: 1rem;
+    }
+}
+
 /* Floorplan Grid Section */
 .floorplan-section {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -343,6 +365,25 @@ body {
 .view-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.file-view-btn {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 24px);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
+    white-space: nowrap;
+}
+
+.file-view-btn:hover {
+    background: #229954;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.5);
 }
 
 /* Modal Styles */
