@@ -14,10 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="file-icon">📄</div>
             <h3>${file.name}</h3>
             <div class="file-buttons">
-                <button class="view-btn file-view-btn" data-url="${file.url}" data-index="${index}">View</button>
                 <a href="${file.url}" class="download-btn" download>Download</a>
             </div>
         `;
+
         fileContainer.appendChild(fileCard);
     });
 
@@ -43,13 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // File View buttons handler
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('file-view-btn')) {
-            const url = e.target.dataset.url;
-            window.open(url, '_blank');
-        }
-    });
+
 
 
 
