@@ -1,7 +1,7 @@
 const files = [
     { name: "COMPUTATION.pdf", url: "./files/COMPUTATION.pdf" },
-    { name: "MF4 PRESENTATION.pdf", url: "./files/MF4 PRESENTATION.pdf" },
-    { name: "price2026.pdf", url: "./files/price2026.pdf" }
+    { name: "CE-PRESENTATION.pdf", url: "./files/CE-PRESENTATION.pdf" },
+    { name: "price2026.pdf", url: "./files/CE-Price04032026.pdf" }
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
