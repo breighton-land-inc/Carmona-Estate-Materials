@@ -417,29 +417,9 @@ body {
     display: block;
 }
 
-.modal-pdf {
-    width: 100%;
-    height: clamp(60vh, 75vw, 70vh);
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    display: block;
-}
-
-#pdfModal .modal-content {
-    max-height: 90vh;
-    display: flex;
-    flex-direction: column;
-}
-
-#pdfModal .close {
-    top: -3rem;
-    align-self: flex-end;
-}
-
-
 .close {
     position: absolute;
+
     top: -3rem;
     right: 0;
     color: white;

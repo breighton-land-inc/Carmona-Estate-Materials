@@ -43,14 +43,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // File View buttons handler - Updated to PDF modal
+    // File View buttons handler
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('file-view-btn')) {
             const url = e.target.dataset.url;
-            const index = parseInt(e.target.dataset.index);
-            openPdfModal(index || 0);
+            window.open(url, '_blank');
         }
     });
+
 
 
 
@@ -138,9 +138,10 @@ const navRight = document.querySelector('.nav-right');
     // Floorplan Modal
     const modal = document.getElementById('floorplanModal');
     const modalImg = document.getElementById('modalImg');
-    const closeBtn = document.querySelector('#floorplanModal .close');
+    const closeBtn = document.querySelector('.close');
 
     const modalPrev = document.getElementById('modalPrev');
+
     const modalNext = document.getElementById('modalNext');
     const modalCounter = document.getElementById('modalCounter');
     
@@ -192,70 +193,15 @@ const navRight = document.querySelector('.nav-right');
         });
     }
 
-// PDF Modal Logic
-    const pdfModal = document.getElementById('pdfModal');
-    const modalPdf = document.getElementById('modalPdf');
-    const pdfCloseBtn = document.querySelector('#pdfModal .close');
-
-    const pdfPrev = document.getElementById('pdfPrev');
-    const pdfNext = document.getElementById('pdfNext');
-    const pdfCounter = document.getElementById('pdfCounter');
-    
-    let pdfCurrent = 0;
-    
-    function openPdfModal(index = 0) {
-        pdfCurrent = index;
-        updatePdfModal();
-        pdfModal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
-    
-    function updatePdfModal() {
-        modalPdf.src = files[pdfCurrent].url + '#view=FitH&toolbar=1&navpanes=0';
-        pdfCounter.textContent = `${pdfCurrent + 1} / ${files.length}`;
-    }
-    
-    // Close PDF modal
-    pdfCloseBtn.addEventListener('click', () => {
-        pdfModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-        modalPdf.src = '';
-    });
-    
-    pdfModal.addEventListener('click', (e) => {
-        if (e.target === pdfModal) {
-            pdfModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            modalPdf.src = '';
-        }
-    });
-    
-    // PDF nav
-    pdfPrev.addEventListener('click', (e) => {
-        e.stopPropagation();
-        pdfCurrent = (pdfCurrent - 1 + files.length) % files.length;
-        updatePdfModal();
-    });
-    
-    pdfNext.addEventListener('click', (e) => {
-        e.stopPropagation();
-        pdfCurrent = (pdfCurrent + 1) % files.length;
-        updatePdfModal();
-    });
-
-// Keyboard navigation (updated for both modals)
+// Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (modal.style.display === 'block') {
             if (e.key === 'ArrowLeft') modalPrev.click();
             if (e.key === 'ArrowRight') modalNext.click();
             if (e.key === 'Escape') closeBtn.click();
         }
-        if (pdfModal.style.display === 'block') {
-            if (e.key === 'ArrowLeft') pdfPrev.click();
-            if (e.key === 'ArrowRight') pdfNext.click();
-            if (e.key === 'Escape') pdfCloseBtn.click();
-        }
     });
+
 
 
     // Image zoom on wheel
