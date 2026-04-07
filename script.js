@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="file-icon">📄</div>
             <h3>${file.name}</h3>
             <div class="file-buttons">
-                <button class="file-view-btn" data-url="${file.url}">View</button>
+                <button class="file-view-btn" data-url="${file.url}">Preview</button>
                 <a href="${file.url}" class="download-btn" download>Download</a>
             </div>
         `;
