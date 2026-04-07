@@ -5,206 +5,91 @@ const files = [
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Populate file list with View + Download buttons
     const fileContainer = document.getElementById('file-list');
-    files.forEach((file, index) => {
-        const fileCard = document.createElement('div');
-        fileCard.className = 'file-card';
-        fileCard.innerHTML = `
-            <div class="file-icon">📄</div>
-            <h3>${file.name}</h3>
-            <div class="file-buttons">
-                <button class="file-view-btn" data-url="${file.url}">Preview</button>
-                <a href="${file.url}" class="download-btn" download>Download</a>
-            </div>
-        `;
-
-        fileContainer.appendChild(fileCard);
-    });
-
-    // Add View button handlers (open PDF in new tab)
-    document.querySelectorAll('.file-view-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const url = btn.dataset.url;
-            window.open(url, '_blank');
+    if (fileContainer) {
+        files.forEach((file) => {
+            const fileCard = document.createElement('div');
+            fileCard.className = 'file-card';
+            fileCard.innerHTML = `
+                <div class="file-icon">📄</div>
+                <h3>${file.name}</h3>
+                <div class="file-buttons">
+                    <button class="btn btn-preview file-view-btn" data-url="${file.url}">Preview</button>
+                    <a href="${file.url}" class="btn btn-download" download>Download</a>
+                </div>
+            `;
+            fileContainer.appendChild(fileCard);
         });
+    }
+
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('file-view-btn')) {
+            window.open(e.target.dataset.url, '_blank');
+        }
     });
 
-    // Smooth scroll for CTA button and nav links
-    document.querySelectorAll('a[href^=\"#"]').forEach(anchor => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            if (targetSection) {
-                targetSection.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-            // Close mobile menu after navigation
-            const hamburger = document.getElementById('hamburger');
-            const navRight = document.querySelector('.nav-right');
-            if (hamburger && navRight) {
-                hamburger.classList.remove('active');
-                navRight.classList.remove('active');
-            }
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            document.getElementById('hamburger')?.classList.remove('active');
+            document.querySelector('.nav-right')?.classList.remove('active');
         });
     });
 
-    // Mobile menu toggle - now targets .nav-right
     const hamburger = document.getElementById('hamburger');
     const navRight = document.querySelector('.nav-right');
-    if (hamburger && navRight) {
-        const toggleMenu = () => {
-            hamburger.classList.toggle('active');
-            navRight.classList.toggle('active');
-        };
+    hamburger?.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navRight.classList.toggle('active');
+    });
 
-        hamburger.addEventListener('click', toggleMenu);
-
-        // Close menu on window resize to desktop
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                if (window.innerWidth > 768) {
-                    hamburger.classList.remove('active');
-                    navRight.classList.remove('active');
-                }
-            }, 100);
-        });
-    }
-
-    // Floorplan horizontal scroll script
-    const floorplanGrid = document.querySelector('.floorplan-grid');
-    if (floorplanGrid) {
-        let scrollLeft = 0;
-        let isDown = false;
-
-        floorplanGrid.addEventListener('mousedown', (e) => {
-            isDown = true;
-            floorplanGrid.style.cursor = 'grabbing';
-            scrollLeft = floorplanGrid.scrollLeft;
-            e.preventDefault();
-        });
-
-        floorplanGrid.addEventListener('mouseleave', () => {
-            isDown = false;
-            floorplanGrid.style.cursor = 'grab';
-        });
-
-        floorplanGrid.addEventListener('mouseup', () => {
-            isDown = false;
-            floorplanGrid.style.cursor = 'grab';
-        });
-
-        floorplanGrid.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            floorplanGrid.style.cursor = 'grabbing';
-            const x = e.pageX - floorplanGrid.offsetLeft;
-            const walk = (x - scrollLeft) * 2;
-            floorplanGrid.scrollLeft = scrollLeft - walk;
-        });
-
-        // Touch support for mobile
-        let startX;
-        floorplanGrid.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].pageX - floorplanGrid.scrollLeft;
-            isDown = true;
-        });
-
-        floorplanGrid.addEventListener('touchmove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.touches[0].pageX - startX;
-            floorplanGrid.scrollLeft = -x;
-        });
-
-        floorplanGrid.addEventListener('touchend', () => {
-            isDown = false;
-        });
-
-        // Hover effect
-        floorplanGrid.style.cursor = 'grab';
-        floorplanGrid.addEventListener('mouseenter', () => {
-            floorplanGrid.style.cursor = 'grab';
-        });
-    }
-
-    // Floorplan Modal
     const modal = document.getElementById('floorplanModal');
     const modalImg = document.getElementById('modalImg');
-    const closeBtn = document.querySelector('.close');
-    const modalPrev = document.getElementById('modalPrev');
-    const modalNext = document.getElementById('modalNext');
     const modalCounter = document.getElementById('modalCounter');
-    
     const floorplanItems = document.querySelectorAll('.floorplan-item');
     const floorplanImages = Array.from(floorplanItems).map(item => item.dataset.img || item.querySelector('img').src);
     let modalCurrent = 0;
 
-    // Open modal
-    document.querySelectorAll('.view-btn').forEach(btn => {
+    const updateModal = (index) => {
+        modalCurrent = index;
+        modalImg.src = floorplanImages[modalCurrent];
+        modalCounter.textContent = `${modalCurrent + 1} / ${floorplanImages.length}`;
+        modalImg.style.transform = 'scale(1)';
+    };
+
+    document.querySelectorAll('.view-btn').forEach((btn) => {
         btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const imgSrc = btn.dataset.img || btn.closest('.floorplan-item').querySelector('img').src;
-            modalCurrent = floorplanImages.indexOf(imgSrc);
-            if (modalCurrent === -1) modalCurrent = 0;
-            modalImg.src = floorplanImages[modalCurrent];
-            modalCounter.textContent = `${modalCurrent + 1} / ${floorplanImages.length}`;
+            const parent = e.target.closest('.floorplan-item');
+            const index = floorplanImages.indexOf(parent.dataset.img || parent.querySelector('img').src);
+            updateModal(index !== -1 ? index : 0);
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
         });
     });
 
-    // Close modal
-    closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    });
+    const closeModal = () => { modal.style.display = 'none'; document.body.style.overflow = 'auto'; };
+    document.querySelector('.close')?.addEventListener('click', closeModal);
+    window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    });
+    document.getElementById('modalPrev')?.addEventListener('click', () => updateModal((modalCurrent - 1 + floorplanImages.length) % floorplanImages.length));
+    document.getElementById('modalNext')?.addEventListener('click', () => updateModal((modalCurrent + 1) % floorplanImages.length));
 
-    // Modal navigation
-    if (modalPrev && modalNext && floorplanImages.length > 1) {
-        modalPrev.addEventListener('click', (e) => {
-            e.stopPropagation();
-            modalCurrent = (modalCurrent - 1 + floorplanImages.length) % floorplanImages.length;
-            modalImg.src = floorplanImages[modalCurrent];
-            modalCounter.textContent = `${modalCurrent + 1} / ${floorplanImages.length}`;
-        });
-
-        modalNext.addEventListener('click', (e) => {
-            e.stopPropagation();
-            modalCurrent = (modalCurrent + 1) % floorplanImages.length;
-            modalImg.src = floorplanImages[modalCurrent];
-            modalCounter.textContent = `${modalCurrent + 1} / ${floorplanImages.length}`;
-        });
-    }
-
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (modal.style.display === 'block') {
-            if (e.key === 'ArrowLeft') modalPrev.click();
-            if (e.key === 'ArrowRight') modalNext.click();
-            if (e.key === 'Escape') closeBtn.click();
+            if (e.key === 'ArrowLeft') document.getElementById('modalPrev').click();
+            if (e.key === 'ArrowRight') document.getElementById('modalNext').click();
+            if (e.key === 'Escape') closeModal();
         }
     });
 
-    // Image zoom on wheel
-    modalImg.addEventListener('wheel', (e) => {
-        e.preventDefault();
-        const scale = modalImg.style.transform ? parseFloat(modalImg.style.transform.match(/scale\\(([^)]+)\\)/)?.[1] || 1) : 1;
-        const delta = e.deltaY > 0 ? 0.9 : 1.1;
-        const newScale = Math.min(Math.max(scale * delta, 0.5), 3);
-        modalImg.style.transform = `scale(${newScale})`;
-    });
+    modalImg?.addEventListener('wheel', (e) => {
+        if (modal.style.display === 'block') {
+            e.preventDefault();
+            const scale = parseFloat(modalImg.style.transform.replace('scale(', '').replace(')', '')) || 1;
+            const newScale = Math.min(Math.max(scale * (e.deltaY > 0 ? 0.9 : 1.1), 0.5), 3);
+            modalImg.style.transform = `scale(${newScale})`;
+        }
+    }, { passive: false });
 });

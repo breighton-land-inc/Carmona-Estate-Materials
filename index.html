@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oakwood File Portal</title>
+    <title>Oakwood File Portal | Carmona Estates</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- Navbar -->
     <nav class="navbar">
-<div class="nav-container">
-            <!--<img src="./bgAndLogo/carmona-removebg-preview.png" alt="Logo" class="logo">-->
-            <h3 class="logo">Oakwood</h2>
-<div class="hamburger" id="hamburger">
+        <div class="nav-container">
+            <div class="logo-group">
+                <img src="bgAndLogo/carmona-removebg-preview.png" alt="Logo" class="logo-img">
+                <span class="logo-separator">|</span>
+                <h3 class="logo-text">Oakwood</h3>
+            </div>
+
+            <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -26,50 +27,41 @@
                <a href="#files" class="nav-btn">Files</a>
                <a href="#floorplan" class="nav-btn">Floor Plans</a>
             </div>
+        </div>
+    </nav>
 
-         
-
-        </nav>
-    <!-- Main Content -->
     <main class="content">
-        <!-- Hero Homepage Section -->
         <section id="hero" class="hero">
-            <div class="hero-content">
-                <h1>Oakwood File Portal</h1>
-                
-                
+            <div class="hero-banner">
+                <img src="bgAndLogo/CE Banner Image.png" alt="Carmona Estates Banner" class="banner-img">
             </div>
+            <div class="hero-content"></div>
         </section>
 
-        <!-- Files Section -->
         <section id="files" class="files-section">
-            <h2>Available Documents</h2>
-            <div id="file-list" class="file-grid">
-                <!-- Files injected by JS -->
-            </div>
+            <h2 class="section-title">Available Documents</h2>
+            <div id="file-list" class="file-grid"></div>
         </section>
 
-        <!-- Floorplan Grid Section (No Carousel) -->
         <section id="floorplan" class="floorplan-section">
             <h2 class="section-title">Floor Plans</h2>
             <div class="floorplan-grid">
                 <div class="floorplan-item" data-img="./floorplan/floorplan1.jpg">
-                    <img src="./floorplan/floorplan1.jpg" alt="Oakwood Floorplan 1" class="floorplan-img">
+                    <img src="./floorplan/floorplan1.jpg" alt="Floorplan 1" class="floorplan-img">
                     <div class="floorplan-overlay">
-                        <button class="view-btn" data-img="./floorplan/floorplan1.jpg">View Floorplan</button>
+                        <button class="view-btn">View Floorplan</button>
                     </div>
                 </div>
                 <div class="floorplan-item" data-img="./floorplan/floorplan2.jpg">
-                    <img src="./floorplan/floorplan2.jpg" alt="Oakwood Floorplan 2" class="floorplan-img">
+                    <img src="./floorplan/floorplan2.jpg" alt="Floorplan 2" class="floorplan-img">
                     <div class="floorplan-overlay">
-                        <button class="view-btn" data-img="./floorplan/floorplan2.jpg">View Floorplan</button>
+                        <button class="view-btn">View Floorplan</button>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Floorplan Modal -->
     <div id="floorplanModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -82,14 +74,10 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2024 Oakwood Properties. All rights reserved.</p>
+        <p>&copy; 2026 Breighton Land Inc. Carmona Estates Materials Portal.</p>
     </footer>
 
     <script src="script.js"></script>
-
 </body>
-
 </html>
-
