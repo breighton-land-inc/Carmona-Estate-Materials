@@ -25,10 +25,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const fileModal = document.getElementById('fileModal');
     const fileViewer = document.getElementById('fileViewer');
 
+    const isMobileDevice = () => {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    };
+
+    const getAbsoluteUrl = (url) => {
+        const a = document.createElement('a');
+        a.href = url;
+        return a.href;
+    };
+
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('file-view-btn')) {
             if (fileModal && fileViewer) {
-                fileViewer.src = e.target.dataset.url;
+                const url = e.target.dataset.url;
+                if (url.toLowerCase().endsWith('.pdf') && isMobileDevice()) {
+                    const absoluteUrl = getAbsoluteUrl(url);
+                    fileViewer.src = `https://docs.google.com/gview?url=${encodeURIComponent(absoluteUrl)}&embedded=true`;
+                } else {
+                    fileViewer.src = url;
+                }
                 fileModal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
             } else {
