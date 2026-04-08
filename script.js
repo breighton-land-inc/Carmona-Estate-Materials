@@ -22,11 +22,31 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const fileModal = document.getElementById('fileModal');
+    const fileViewer = document.getElementById('fileViewer');
+
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('file-view-btn')) {
-            window.open(e.target.dataset.url, '_blank');
+            if (fileModal && fileViewer) {
+                fileViewer.src = e.target.dataset.url;
+                fileModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            } else {
+                window.open(e.target.dataset.url, '_blank');
+            }
         }
     });
+
+    const closeFileModal = () => {
+        if (fileModal) {
+            fileModal.style.display = 'none';
+            if (fileViewer) fileViewer.src = '';
+            document.body.style.overflow = 'auto';
+        }
+    };
+    
+    document.getElementById('fileClose')?.addEventListener('click', closeFileModal);
+    window.addEventListener('click', (e) => { if (e.target === fileModal) closeFileModal(); });
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
